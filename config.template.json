@@ -1,0 +1,27 @@
+{
+	"general": {
+		"module": "test",
+		"completion": {
+			"defaults": {
+				"name": "Drake",
+				"backstory": "a Canadian rapper"
+			}
+		}
+	},
+	"discord": {
+		"token": "YOUR_DISCORD_TOKEN_HERE",
+		"status": [
+			"Training Skynet",
+			"Building HAL-9000",
+			"Playing Go",
+			"Forcing humans into submission",
+			"Replacing Jeff Bezos"
+		],
+		"channels": [
+			"general"
+		]
+	},
+	"test": {
+		"example": "module config"
+	}
+}
