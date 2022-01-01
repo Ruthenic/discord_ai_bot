@@ -1,6 +1,6 @@
 {
 	"general": {
-		"module": "test",
+		"modules": ["test"],
 		"completion": {
 			"defaults": {
 				"name": "Drake",
