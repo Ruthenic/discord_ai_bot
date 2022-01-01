@@ -51,6 +51,6 @@ async def respond(event: hikari.GuildMessageCreateEvent) -> None:
     else:
         user = "".join(str(event.get_member()).split("#")[:-1])
         response = ai.complete(user, event.content)
-        await event.message.respond(response)
+        await event.message.respond(response, reply=True, mentions_reply=False)
 
 bot.run()
