@@ -20,7 +20,10 @@ class completion():
         self.__reset()
     def complete(self, username, text):
         self.__updatePrompt(username, text)
-        generation = self.__generate()
+        try:
+            generation = self.__generate()
+        except Exception as e:
+            return f"ERROR: {str(e)}"
         print(f"Generated response: {generation}")
         self.prompt += generation + "\n"
         return f"[{self.name}] {generation}"
