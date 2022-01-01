@@ -4,11 +4,22 @@ import json              # used to read config file
 
 config = json.load(open('config.json'))
 
-module = importlib.import_module("modules." + config["general"]["module"])
-token  = config["discord"]["token"]
+modules = config["general"]["modules"]
+module  = importlib.import_module("modules." + modules[0])
+token   = config["discord"]["token"]
 
 bot = lightbulb.BotApp(token=token, prefix=None, help_class=None)
 ai  = module.completion(config)
+
+@bot.command
+@lightbulb.option("module", "the module to change to", choices=modules, required=True)
+@lightbulb.command("module", "change the module the bot is using", guilds=[926338019932381214])
+@lightbulb.implements(lightbulb.SlashCommand)
+async def switchModule(ctx: lightbulb.Context) -> None:
+    global ai # i am skynet and i am coming to take your babies
+    module = importlib.import_module("modules." + ctx.options.module)
+    ai     = module.completion(config)
+    await ctx.respond(f"Changed the module to {ctx.options.module}")
 
 @bot.command
 @lightbulb.option("name", "the new name", required=False)
