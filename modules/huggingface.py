@@ -6,6 +6,8 @@ class completion():
         self.headers = {"Authorization": "Bearer " + config["huggingface"]["token"]}
         self.NAME = config["general"]["completion"]["defaults"]["name"]
         self.BACKSTORY = config["general"]["completion"]["defaults"]["backstory"]
+        self.name = self.NAME           # required for compat with the rest
+        self.backstory = self.BACKSTORY
         self.prefix = 'The following is a chat with ' + self.NAME + ', ' + self.BACKSTORY + '.\n'
         self.memory = []
 
@@ -44,7 +46,9 @@ class completion():
     def changeShit(self, name=None, backstory=None):
         self.NAME = name if name else self.NAME
         self.BACKSTORY = backstory if backstory else self.BACKSTORY
-        print(f"New name: {self.BACKSTORY}\nNew backstory: {self.BACKSTORY}")
+        self.name = self.NAME           # required for compat with the rest
+        self.backstory = self.BACKSTORY
+        print(f"New name: {name}\nNew backstory: {backstory}")
         self.prefix = 'The following is a chat with ' + self.NAME + ', ' + self.BACKSTORY + '.\n'
         self.memory = []
     def complete(self, username, text):
