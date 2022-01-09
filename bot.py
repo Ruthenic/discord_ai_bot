@@ -13,7 +13,7 @@ ai  = module.completion(config)
 
 @bot.command
 @lightbulb.option("module", "the module to change to", choices=modules, required=True)
-@lightbulb.command("module", "change the module the bot is using", guilds=[926338019932381214])
+@lightbulb.command("module", "change the module the bot is using", guilds=[716611330198732868])
 @lightbulb.implements(lightbulb.SlashCommand)
 async def switchModule(ctx: lightbulb.Context) -> None:
     global ai # i am skynet and i am coming to take your babies
@@ -24,20 +24,20 @@ async def switchModule(ctx: lightbulb.Context) -> None:
 @bot.command
 @lightbulb.option("name", "the new name", required=False)
 @lightbulb.option("backstory", "the new backstory", required=False)
-@lightbulb.command("change", "change parameters of the bot", guilds=[926338019932381214])
+@lightbulb.command("change", "change parameters of the bot", guilds=[716611330198732868])
 @lightbulb.implements(lightbulb.SlashCommand)
 async def change(ctx: lightbulb.Context) -> None:
     ai.changeShit(name=ctx.options.name, backstory=ctx.options.backstory)
     await ctx.respond(f"Changed the following options:\nName: {str(ctx.options.name)}\nBackstory: {str(ctx.options.backstory)}")
 
 @bot.command
-@lightbulb.command("status", "tells you the current name and backstory", guilds=[926338019932381214])
+@lightbulb.command("status", "tells you the current name and backstory", guilds=[716611330198732868])
 @lightbulb.implements(lightbulb.SlashCommand)
 async def status(ctx: lightbulb.Context) -> None:
     await ctx.respond(f"Name: {ai.name}\nBackstory: {ai.backstory}")
 
 @bot.command
-@lightbulb.command("reset", "reset the prompt of the bot", guilds=[926338019932381214])
+@lightbulb.command("reset", "reset the prompt of the bot", guilds=[716611330198732868])
 @lightbulb.implements(lightbulb.SlashCommand)
 async def reset(ctx: lightbulb.Context) -> None:
     ai.changeShit() # call change without setting anything because i'm lazy and reset is gonna be a private function for now
