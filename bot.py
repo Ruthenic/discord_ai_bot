@@ -1,6 +1,7 @@
 import importlib         # used to import modules by string
 import hikari, lightbulb # used to actually make the bot
 import json              # used to read config file
+import random
 
 config = json.load(open('config.json'))
 

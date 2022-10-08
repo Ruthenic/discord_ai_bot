@@ -5,6 +5,7 @@ class completion():
         self.name      = config["general"]["completion"]["defaults"]["name"]
         self.backstory = config["general"]["completion"]["defaults"]["backstory"]
         self.prompt    = f"The following is a chat with {self.name}, {self.backstory}.\n\n"
+        self.model     = config["openai"]["model"]
         openai.api_key = config["openai"]["token"]
     def __updatePrompt(self, username, text):
         print(f"Old prompt: {self.prompt}")

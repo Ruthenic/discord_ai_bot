@@ -2,8 +2,8 @@ import requests, re
 
 class completion():
     def __init__(self, config):
-        self.API_URL = "https://api-inference.huggingface.co/models/" + "EleutherAI/gpt-j-6B"
-        self.headers = {"Authorization": "Bearer " + config["huggingface"]["token"]}
+        self.API_URL = "https://api.goose.ai/v1/engines/" + "gpt-neo-20b/" + "completions"
+        self.headers = {"Authorization": "Bearer " + config["gooseai"]["token"]}
         self.NAME = config["general"]["completion"]["defaults"]["name"]
         self.BACKSTORY = config["general"]["completion"]["defaults"]["backstory"]
         self.name = self.NAME           # required for compat with the rest
@@ -12,7 +12,7 @@ class completion():
         self.memory = []
 
     def query(self, payload):
-        response = requests.post(self.API_URL, headers=self.headers, json=payload)
+        response = requests.post(self.API_URL, headers=self.headers, data=payload)
         return response.json()
 
     def genCleanMessage(self, optPrompt, userName):
@@ -31,7 +31,6 @@ class completion():
         output_list = self.query({"inputs": completePrompt, "parameters": text_generation_parameters})
         if (type(output_list) == str):
             raise Exception(output_list)
-        print(output_list)
         response = output_list[0]["generated_text"]
         print('\nGENERATED:\n' + response)
         truncate = 0
